@@ -17,7 +17,7 @@ require "odds"
 require "minitest/unit"
 require "minitest/autorun"
 require "rack/test"
-require "mocha"
+require "mocha/mini_test"
 
 def fixture file
   File.read "test/fixtures/#{file}"
