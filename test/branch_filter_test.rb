@@ -5,7 +5,14 @@ class BranchFilterTest < MiniTest::Unit::TestCase
 
   def app
     Sinatra::Application
+  end
+
+  def setup
     set :odds, "0:0"
+  end
+
+  def teardown
+    set :odds, ENV["ODDS"]
   end
 
   def json
