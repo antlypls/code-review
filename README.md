@@ -14,6 +14,8 @@ ridicule [@espenhogbakk](https://github.com/espenhogbakk) whenever he version co
 
 Create a post-receive hook to hit your code review application and specify the service you're using
 in the `service` parameter (e.g. `http://review.example.org?service=github`).
+A request can also contain optional `langs` parameter for repository languages specification.
+E.g. `http://review.example.org?service=github&langs=ruby,coffeescript,scss`.
 
 ## Configuration
 
@@ -21,7 +23,13 @@ The application looks to the following environment variables for its configurati
 
 * `SENDER` - A string describing the sender's name and email address (e.g `Hyper <no-reply@hyper.no>`).
 * `ODDS` - A string of the format "x:y" that describes the likelihood that a commit will be selected for review (e.g. `1:25`).
-* `REVIEWERS` - A comma-separated list of e-mail addresses that code reviews may be addressed to (e.g. `john@work.com,jane@work.com`).
+* `REVIEWERS` - A comma-separated list of e-mail addresses that code reviews
+may be addressed to (e.g. `john@work.com,jane@work.com`). Each reviewer can
+belong to one group (e.g `john@work.com|rails,jane@work.com|ios`)
+* `GROUPS` - A semicolon-separated list of language groups, that used for
+reviews filtering. A group definition format is `group_name:language_list`,
+where `language_list` is a comma separated list of languages. For instance, two
+groups can be defined as `rails:ruby,javascript;ios:objective-c`.
 * `SMTP_HOST` - A string describing the SMTP host.
 * `SMTP_PORT` - A string describing the SMTP port.
 * `SMTP_DOMAIN` - A string describing the SMTP domain.
